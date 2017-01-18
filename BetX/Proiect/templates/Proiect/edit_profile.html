@@ -1,0 +1,13 @@
+{% extends 'Proiect/user_profile.html' %}
+
+{% block head %}
+   <h1>Edit user profile</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input class="button" type="submit" value="Send"/>
+  </form>
+{% endblock %}
