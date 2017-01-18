@@ -13,11 +13,14 @@ from . import models
 from . import forms
 
 from .forms import SignUpForm
+from .models import Pronostic
 # Create your views here.
 
-def index(request):
-	return HttpResponse("This is the home Page")
-
+def pronosticuri(request):
+    latest_pronostic_list = Pronostic.objects.order_by('-publication_date')
+    context = {'latest_pronostic_list': latest_pronostic_list}
+    return render(request, 'Proiect/pronostic.html', context)
+ 
 def detail(request, pronostic_id):
 	return HttpResponse("Te uiti la pronosticul:%s" % pronostic_id)
 
