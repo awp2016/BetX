@@ -1,0 +1,32 @@
+
+{% block content %}
+
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" class="button" type="submit" value="Save"/>
+  </form>
+
+<div class="index-posts-area">
+  {% for status in status_list %}
+  <div class="index-post">
+    <p>{{ status.text | slice:":15" }}...
+        <a class="see-more" href="{% url 'status_details' status.pk %}">See more</a>
+    </p>
+
+    <small>
+      by
+      {% if user.profile %}
+        <a href="{% url 'user_profile' status.author.profile.pk %}">
+          {{ status.author }}</a>
+      {% else %}
+          {{ status.author }}
+      {% endif %}
+      on {{ status.date_added }}
+    </small>
+  </div>
+
+  {% endfor %}
+</div>
+
+{% endblock %}
