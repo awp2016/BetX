@@ -1,4 +1,4 @@
-#!/home/ciprian/BetX/sandbox/bin/python
+#!/home/ciprian/Desktop/BetX-master/BetX/sandbox/bin/python
 
 import sys
 import getopt

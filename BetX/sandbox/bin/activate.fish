@@ -36,7 +36,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/home/ciprian/BetX/sandbox"
+set -gx VIRTUAL_ENV "/home/ciprian/Desktop/BetX-master/BetX/sandbox"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH
