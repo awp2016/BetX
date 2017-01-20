@@ -56,7 +56,7 @@ def login_view(request):
             if user:
                 login(request=request,
                       user=user)
-                return redirect('user_profile')
+                return redirect('pronosticuri')
             else:
                 context['error_message'] = 'Wrong username or password!'
     context['form'] = form
