@@ -1,15 +1,27 @@
-/*.login-card{
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
-    z-index: 1;
-    transform: translateY(50%);;
-    text-align: center;
-    border-radius: 50%;
-    top: 50%;
-}*/
+body{
+    background-color: #EEEEEE;
+
+}
+.user{
+    float: right;
+    padding-top: 30px;
+}
+.table a{
+    font-size: 25px;
+}
+.table a:link {
+    text-decoration: none;
+}
+
+.table a:visited {
+    text-decoration: none;
+}
+.user-details {
+    clear: both;
+}
+span{
+    display: block;
+}
 .card{
     display: inline-block;
     position: relative;
@@ -19,15 +31,22 @@
     box-shadow: 0 7px 20px 0 rgba(0, 0, 0, 0.14);
     border-radius: 6px;
     color: rgba(0,0,0, 0.87);
-    background: #fff7e6;
+    background: #fff;
 }
-body{
-    background-color: #EEEEEE;
-    background-image: url('img/img1.jpg');
+.card .card-content {
+    padding: 15px 20px;
+    position: relative;
+}
+.card .card-title {
+    margin-top: 0;
+    margin-bottom: 3px;
+    padding-bottom: 15px;
+    color: #3C4858;
+    text-decoration: none;
 }
 .card p input{
     display: inline-block;
-    width: auto;
+    width: 100%;
     vertical-align: middle;
     height: 34px;
     padding: 6px 12px;

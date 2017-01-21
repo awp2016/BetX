@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from . import models 
+from . import models
 
 from .models import Pronostic
 from .models import SignUp
@@ -16,4 +16,5 @@ class SignUpAdmin(admin.ModelAdmin):
 admin.site.register(Pronostic)
 admin.site.register(Match)
 admin.site.register(models.UserProfile)
-admin.site.register(Commnent)
+admin.site.register(models.Commnent)
+admin.site.register(models.SignUp)

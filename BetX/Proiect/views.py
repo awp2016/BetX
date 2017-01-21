@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect, render
 from django.urls import reverse
-from django.views.generic.edit import DeleteView, UpdateView
+from django.views.generic.edit import DeleteView, UpdateView, CreateView
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.contrib.auth.models import User
@@ -118,6 +118,7 @@ class UserProfileView(DetailView):
 		context['pronostics'] = self.get_object().user.pronostics.all()
 		return context
 
+
 # def edit_user_profile(request, pk):
 #     user_profile = models.UserProfile.objects.get(pk=pk)
 #     form = forms.ProfileForm(initial={
@@ -149,6 +150,8 @@ class UserProfileUpdate(LoginRequiredMixin, UpdateView):
 		return reverse('user_profile', kwargs = {'pk':self.get_object().pk})
 
 
+
+
 class AddComment(CreateView):
 	model = models.Commnent
 	fields = ['comment_text']
@@ -165,3 +168,14 @@ class AddComment(CreateView):
 		else:
 			raise HttpResponseBadRequest
 
+
+
+class AddProno(LoginRequiredMixin, CreateView):
+	model = models.Pronostic
+	fields = ['match','pronostic_text']
+	template_name = 'Proiect/addprono.html'
+	def form_valid(self, form):
+		form.instance.user = self.request.user
+		return super(AddProno, self).form_valid(form)
+	def get_success_url(self):
+		return reverse('Home')
