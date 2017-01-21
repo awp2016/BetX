@@ -16,6 +16,8 @@ from . import forms
 
 from .forms import SignUpForm
 from .models import Pronostic
+from django.views.generic.edit import CreateView
+from .models import Commnent
 # Create your views here.
 
 
@@ -145,3 +147,21 @@ class UserProfileUpdate(LoginRequiredMixin, UpdateView):
 	template_name = 'Proiect/edit_profile.html'
 	def get_success_url(self):
 		return reverse('user_profile', kwargs = {'pk':self.get_object().pk})
+
+
+class AddComment(CreateView):
+	model = models.Commnent
+	fields = ['comment_text']
+	template_name = 'Proiect/AddComment.html'
+
+	def post(self, request, *args, **kwargs):
+		form = self.get_form_class()(request.POST)
+		form.instance.author = self.request.user
+		pronostic =  models.Pronostic.objects.get(pk = self.kwargs['pk'])
+		form.instance.pronostic = pronostic
+		if form.is_valid():
+			models.Commnent.objects.create(author = form.instance.author, pronostic = pronostic, comment_text = form.cleaned_data["comment_text"]);
+			return redirect('/Match/Details/'+ str(pronostic.pk))
+		else:
+			raise HttpResponseBadRequest
+
