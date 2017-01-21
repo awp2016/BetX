@@ -12,4 +12,10 @@
     <span> Sex: <b>{{ user_profile.sex }}</b> </span>
   </div>
   <a class="button" href="{% url 'edit_profile' user_profile.pk %}">Edit</a>
+  <h2>Istoric pronosticuri</h2>
+  <ul>
+    {% for pronostic in pronostics %}
+        <li><a href="/{{ pronostic.id }}/">{{ pronostic.pronostic_text }}</a></li>
+    {% endfor %}
+    </ul>
 {% endblock %}

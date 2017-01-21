@@ -102,6 +102,10 @@ class UserProfileView(DetailView):
 	context_object_name = 'user_profile'
 	template_name = 'Proiect/user_profile.html'
 
+	def get_context_data(self, **kwargs):
+		context = super(UserProfileView, self).get_context_data(**kwargs)
+		context['pronostics'] = self.get_object().user.pronostics.all()
+		return context
 
 # def edit_user_profile(request, pk):
 #     user_profile = models.UserProfile.objects.get(pk=pk)
