@@ -1,17 +1,17 @@
 {% extends 'Proiect/layout.html' %}
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            {% if matches %}
-                <ul>
-                {% for match in matches %}
-                    <li><a href="/{{ match.id }}/">{{ match.subject }}</a></li>
-                {% endfor %}
-                </ul>
-            {% else %}
-                <p>No matches are available.</p>
-            {% endif %}
-        </div>
 
-    </div>
-</div>
+<<<<<<< HEAD
+{% block content %}
+
+=======
+>>>>>>> 82414dd44bcf0874dbbaeec8d56cb765fdd3d703
+{% if matches %}
+    <ul>
+    {% for match in matches %}
+        <li><a href="{% url 'pronosticuri' match.pk %}">{{ match.subject }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No matches are available.</p>
+{% endif %}
+{% endblock %}

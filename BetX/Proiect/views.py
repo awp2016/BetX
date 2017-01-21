@@ -18,11 +18,7 @@ from .forms import SignUpForm
 from .models import Pronostic
 # Create your views here.
 
-def Home(request):
 
-	latest_matches_list = Pronostic.objects.order_by('-publication_date')
-	context = {'latest_matches_list': latest_matches_list} 
-	return render(request, 'Proiect/Home.html', context)
 
 
 class MatchListView(ListView):
@@ -31,10 +27,14 @@ class MatchListView(ListView):
 	context_object_name = 'matches'
 
 
-def pronostics(request, meci_id):
-	latest_pronostics_list = Pronostic.objects.order_by('-publication_date')
-	context = {'latest_pronostics_list': latest_pronostics_list}
-	return render(request, 'Proiect/pronosticuri.html', context)
+
+
+class PronosticuriListView(ListView):
+	model = models.Pronostic
+	template_name = 'Proiect/pronosticuri.html'
+	context_object_name = "pronosticuri"
+	def get_queryset(self):
+		return Pronostic.objects.filter(match__pk= self.kwargs['pk']).order_by('-publication_date')
 
 def results(request, pronostic_id):
 	response = "You're looking at the results of question %s."

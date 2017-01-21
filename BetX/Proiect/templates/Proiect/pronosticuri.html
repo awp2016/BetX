@@ -1,9 +1,9 @@
-{% if latest_pronostic_list %}
+{% if pronosticuri %}
     <ul>
-    {% for pronostic in latest_pronostic_list %}
-        <li><a href="{% url 'pronostics' meci.pk %}">{{ Pronostic.pronostic_text }}</a></li>
+    {% for pronostic in pronosticuri %}
+        <li><a href="Home/{{ pronostic.id }}/">{{ pronostic.pronostic_text }}</a></li>
     {% endfor %}
     </ul>
 {% else %}
-    <p>No pronostics are available are available.</p>
+    <p>No pronostics are available</p>
 {% endif %}
