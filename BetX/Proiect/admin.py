@@ -6,6 +6,7 @@ from . import models
 from .models import Pronostic
 from .models import SignUp
 from .models import Match
+from .models import Commnent
 
 class SignUpAdmin(admin.ModelAdmin):
 	class Meta:
@@ -15,3 +16,4 @@ class SignUpAdmin(admin.ModelAdmin):
 admin.site.register(Pronostic)
 admin.site.register(Match)
 admin.site.register(models.UserProfile)
+admin.site.register(Commnent)
