@@ -3,21 +3,24 @@
 {% block head %}
   <h1>Detalii Pronostic</h1>
 {% endblock %}
-
+{% block content %}
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-1">
-            {% if pronostic %}
-            <h1> Detalii despre pronosticul {{pronostic.pronostic_text}} din meciul {{pronostic.match.subject}} </h1>
-                <ul>
-                {% for comment in pronostic.comments.all %}
-                    <li>{{comment.comment_text}}" adaugat de {{comment.author.profile}}</li>
-                {% endfor %}
-                </ul>
+                <h4> Detalii despre pronosticul {{pronostic.pronostic_text}} din meciul {{pronostic.match.subject}} </h4>
+                <br><br>
+                {% if pronostic.comments.count %}
+                <ol>
+                    {% for comment in pronostic.comments.all %}
+                        <li>"{{comment.comment_text}}" adaugat de {{comment.author.profile}}</li>
+                    {% endfor %}
+                </ol>
             {% else %}
-                <p>No comments are available</p>
+                <p>Nu sunt comentarii inca!</p>
             {% endif %}
-            <a href = "{% url 'addcomment' pronostic.pk %}"> Add Comment</a>
+            <br>
+            <a class="btn btn-primary" href = "{% url 'addcomment' pronostic.pk %}"> Add Comment</a>
         </div>
     </div>
 </div>
+{% endblock %}
