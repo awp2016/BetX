@@ -8,6 +8,7 @@ urlpatterns = [
     url(r'^addprono/$', views.AddProno.as_view(), name='addprono'),
     url(r'^(?P<pronostic_id>[0-9]+)/results/$', views.results, name='results'),
     url(r'^(?P<pronostic_id>[0-9]+)/vote/$', views.vote, name='vote'),
+    url(r'^Match/Details/(?P<pk>[0-9]+)/$', views.PronosticDetailView.as_view(), name='details'),
     url(r'^signup', views.signup, name="signup"),
     url(r'^Login', views.login_view, name="login"),
     url(r'^logout/$', views.logout_view, name="logout"),

@@ -43,12 +43,14 @@ class PronosticuriListView(ListView):
 
 
 
-def results(request, pronostic_id):
-	response = "You're looking at the results of question %s."
-	return HttpResponse(response % pronostic_id)
 
-def vote(request, pronostic_id):
-	return HttpResponse("Votezi pronosticul:%s" % pronostic_id)
+
+class PronosticDetailView(DetailView):
+	model = models.Pronostic
+	context_object_name = "pronostic"
+	template_name = 'Proiect/PronosticDetails.html'
+
+
 
 def signup(request):
 	if request.method == 'POST':
@@ -113,6 +115,7 @@ class UserProfileView(DetailView):
 		context = super(UserProfileView, self).get_context_data(**kwargs)
 		context['pronostics'] = self.get_object().user.pronostics.all()
 		return context
+
 
 # def edit_user_profile(request, pk):
 #     user_profile = models.UserProfile.objects.get(pk=pk)
