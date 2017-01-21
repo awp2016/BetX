@@ -4,7 +4,7 @@ from . import views
 
 urlpatterns = [
     url(r'^Home/$', views.MatchListView.as_view(), name='Home'),
-    url(r'^Home/(?P<meci_id>[0-9]+)/$', views.pronostics, name='detail'),
+    url(r'^Match/(?P<pk>[0-9]+)/$', views.PronosticuriListView.as_view(), name='pronosticuri'),
     url(r'^(?P<pronostic_id>[0-9]+)/results/$', views.results, name='results'),
     url(r'^(?P<pronostic_id>[0-9]+)/vote/$', views.vote, name='vote'),
     url(r'^signup', views.signup, name="signup"),
