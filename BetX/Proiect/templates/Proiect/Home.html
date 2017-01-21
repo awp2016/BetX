@@ -1,9 +1,11 @@
-{% if latest_pronostic_list %}
+{% extends 'Proiect/layout.html' %}
+
+{% if matches %}
     <ul>
-    {% for pronostic in latest_pronostic_list %}
-        <li><a href="/{{ pronostic.id }}/">{{ pronostic.pronostic_text }}</a></li>
+    {% for match in matches %}
+        <li><a href="/{{ match.id }}/">{{ match.subject }}</a></li>
     {% endfor %}
     </ul>
 {% else %}
-    <p>No polls are available.</p>
+    <p>No matches are available.</p>
 {% endif %}

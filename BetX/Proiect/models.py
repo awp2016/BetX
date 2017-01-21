@@ -7,19 +7,25 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from django.utils.encoding import smart_unicode
 
+class BaseModel(models.Model):
+	publication_date = models.DateTimeField(auto_now_add=True)
+
+	class Meta:
+		abstract = True
+
+
 # Create your models here.
-class Match(models.Model):
+class Match(BaseModel):
 	user = models.ForeignKey(User)
 	subject = models.CharField(max_length=200)
 	def __str__(self):
 		return self.subject
 
 
-class Pronostic(models.Model):
+class Pronostic(BaseModel):
 	user = models.ForeignKey(User)
 	match = models.ForeignKey(Match, on_delete = models.CASCADE)
 	pronostic_text = models.CharField(max_length = 200)
-	publication_date = models.DateTimeField('date published')
 	def __str__(self):
 		return self.pronostic_text
 	def was_published_recently(self):
@@ -34,11 +40,11 @@ class Vote(models.Model):
 		return self.vote_text
 
 
-class Commnent(models.Model):
+class Commnent(BaseModel):
 	pronostic = models.ForeignKey(Pronostic, on_delete = models.CASCADE)
 	author = models.ForeignKey(User)
 	comment_text = models.CharField(max_length = 200)
-	publication_date = models.DateTimeField('date published')
+	
 	
 
 class SignUp(models.Model):

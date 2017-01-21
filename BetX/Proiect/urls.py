@@ -3,8 +3,8 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
-    url(r'^Home/$', views.Home, name='Home'),
-    url(r'^(?P<pronostic_id>[0-9]+)/$', views.detail, name='detail'),
+    url(r'^Home/$', views.MatchListView.as_view(), name='Home'),
+    url(r'^Home/(?P<meci_id>[0-9]+)/$', views.pronostics, name='detail'),
     url(r'^(?P<pronostic_id>[0-9]+)/results/$', views.results, name='results'),
     url(r'^(?P<pronostic_id>[0-9]+)/vote/$', views.vote, name='vote'),
     url(r'^signup', views.signup, name="signup"),
