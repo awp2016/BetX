@@ -1,3 +1,5 @@
+{% extends 'Proiect/layout.html' %}
+
 {% block head %}
   <h1>User profile</h1>
 {% endblock %}
@@ -9,5 +11,5 @@
     <span> Birthday: <b>{{ user_profile.birthday }}</b> <br> </span>
     <span> Sex: <b>{{ user_profile.sex }}</b> </span>
   </div>
-  <a class="button" href="{% url 'edit_user_profile' user_profile.pk %}">Edit</a>
+  <a class="button" href="{% url 'edit_profile' user_profile.pk %}">Edit</a>
 {% endblock %}

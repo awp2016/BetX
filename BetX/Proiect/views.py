@@ -7,6 +7,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.views.generic.edit import DeleteView, UpdateView
+from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.contrib.auth.models import User
 
@@ -72,33 +73,47 @@ def logout_view(request):
         return redirect('login')
 
 
-def user_profile(request, pk):
-    if request.method == 'GET':
-        user_profile = models.UserProfile.objects.get(pk=pk)
-    context = {
-        'user_profile': user_profile,
-    }
-    return render(request, 'Proiect/user_profile.html', context)
+# def user_profile(request, pk):
+#     if request.method == 'GET':
+#         user_profile = models.UserProfile.objects.get(pk=pk)
+#     context = {
+#         'user_profile': user_profile,
+#     }
+#     return render(request, 'Proiect/user_profile.html', context)
+
+class UserProfileView(DetailView):
+
+    model = models.UserProfile
+    context_object_name = 'user_profile'
+    template_name = 'Proiect/user_profile.html'
 
 
-def edit_user_profile(request, pk):
-    user_profile = models.UserProfile.objects.get(pk=pk)
-    form = forms.ProfileForm(initial={
-        'first_name': user_profile.first_name,
-        'last_name': user_profile.last_name
-    })
-    if request.method == 'POST':
-        form = forms.ProfileForm(request.POST)
-        if form.is_valid():
-            first_name = form.cleaned_data['first_name']
-            last_name = form.cleaned_data['last_name']
-            user_profile.first_name = first_name
-            user_profile.last_name = last_name
-            user_profile.save()
-            return redirect('user_profile', pk=pk)
+# def edit_user_profile(request, pk):
+#     user_profile = models.UserProfile.objects.get(pk=pk)
+#     form = forms.ProfileForm(initial={
+#         'first_name': user_profile.first_name,
+#         'last_name': user_profile.last_name
+#     })
+#     if request.method == 'POST':
+#         form = forms.ProfileForm(request.POST)
+#         if form.is_valid():
+#             first_name = form.cleaned_data['first_name']
+#             last_name = form.cleaned_data['last_name']
+#             user_profile.first_name = first_name
+#             user_profile.last_name = last_name
+#             user_profile.save()
+#             return redirect('user_profile', pk=pk)
+#
+#     context = {
+#         'user_profile': user_profile,
+#         'form': form,
+#     }
+#     return render(request, 'Proiect/edit_profile.html', context)
 
-    context = {
-        'user_profile': user_profile,
-        'form': form,
-    }
-    return render(request, 'Proiect/edit_profile.html', context)
+
+class UserProfileUpdate(LoginRequiredMixin, UpdateView):
+    model = models.UserProfile
+    fields = ['first_name','last_name','birthday','sex']
+    template_name = 'Proiect/edit_profile.html'
+    def get_success_url(self):
+        return reverse('user_profile', kwargs = {'pk':self.get_object().pk})
