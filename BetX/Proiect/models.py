@@ -71,3 +71,6 @@ class UserProfile(models.Model):
     birthday = models.DateField(null=True)
     sex = models.CharField(max_length=1, choices=SEX_CHOICES, default=MALE)
     user = models.OneToOneField(User, primary_key=True, related_name='profile')
+
+    def __str__(self):
+    	return self.first_name + " " + self.last_name
