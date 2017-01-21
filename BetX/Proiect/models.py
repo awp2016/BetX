@@ -17,12 +17,27 @@ class Pronostic(models.Model):
 	def was_published_recently(self):
 		return self.publication_date >= timezone.now() - datetime.timedelta(days=1)
 
-class Choice(models.Model):
+
+class Vote(models.Model):
 	pronostic = models.ForeignKey(Pronostic, on_delete = models.CASCADE)
-	choice_text = models.CharField(max_length = 200)
-	votes = models.IntegerField(default = 0)
+	user = models.ForeignKey(User)
+	vote_value = models.CharField(max_length = 200)
 	def __str__(self):
-		return self.choice_text
+		return self.vote_text
+
+
+class Commnent(models.Model):
+	pronostic = models.ForeignKey(Pronostic, on_delete = models.CASCADE)
+	author = models.ForeignKey(User)
+	comment_text = models.CharField(max_length = 200)
+	publication_date = models.DateTimeField('date published')
+
+
+class Match(models.Model):
+	pronostic = models.ForeignKey(Pronostic, on_delete = models.CASCADE)
+	user = models.ForeignKey(User)
+	subject = models.CharField(max_length=200)
+	
 
 class SignUp(models.Model):
 	first_name = models.CharField(max_length=120, null=True, blank=True)
@@ -33,6 +48,7 @@ class SignUp(models.Model):
 
 	def __unicode__(self):
 		return smart_unicode(self.email)
+
 
 class UserProfile(models.Model):
     MALE = 'M'
