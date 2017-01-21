@@ -15,7 +15,28 @@
   <h2>Istoric pronosticuri</h2>
   <ul>
     {% for pronostic in pronostics %}
-        <li><a href="/{{ pronostic.id }}/">{{ pronostic.pronostic_text }}</a></li>
+        <li>
+        Pronostic : 
+        <a href="{% url 'pronosticuri' pronostic.match.pk %}">{{pronostic.pronostic_text}}</a>
+        pentru meciul : 
+        <a href="{% url 'pronosticuri' pronostic.match.pk %}">{{pronostic.match.subject}}</a>
+        <ul>
+     
+        	 {% for comment in pronostic.comments.all %}
+       		 <li>
+       		 Comentariu: 
+        		{{comment.comment_text}}
+        		<ul>
+        		<li>
+        	   		adaugat de : 
+       		 		{{comment.author}}
+       		 		</li>
+       		 		</ul>
+      		  </li>
+    		{% endfor %}
+    	</ul>
+     	</li>
+
     {% endfor %}
     </ul>
 {% endblock %}

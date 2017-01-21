@@ -15,3 +15,4 @@ class SignUpAdmin(admin.ModelAdmin):
 admin.site.register(Pronostic)
 admin.site.register(Match)
 admin.site.register(models.UserProfile)
+admin.site.register(models.Commnent)

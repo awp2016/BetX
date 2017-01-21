@@ -107,6 +107,7 @@ class UserProfileView(DetailView):
 		context['pronostics'] = self.get_object().user.pronostics.all()
 		return context
 
+
 # def edit_user_profile(request, pk):
 #     user_profile = models.UserProfile.objects.get(pk=pk)
 #     form = forms.ProfileForm(initial={
