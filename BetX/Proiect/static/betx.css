@@ -21,15 +21,6 @@
     color: rgba(0,0,0, 0.87);
     background: #fff7e6;
 }
-.wrapper{
-    position: relative;
-    top: 0;
-    height: 100vh;
-}
-.wrapper.wrapper-full-page{
-    height: auto;
-    min-height: 100vh;
-}
 body{
     background-color: #EEEEEE;
     background-image: url('img/img1.jpg');
