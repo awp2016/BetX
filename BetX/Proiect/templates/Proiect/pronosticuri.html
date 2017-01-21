@@ -1,7 +1,8 @@
 {% if pronosticuri %}
+<h1> Pronosticuri pentru {{match.subject}} </h1>
     <ul>
     {% for pronostic in pronosticuri %}
-        <li><a href="Home/{{ pronostic.id }}/">{{ pronostic.pronostic_text }}</a></li>
+        <li><a href="{% url 'details' pronostic.pk %}">{{ pronostic.pronostic_text }}, Adaugat de : {{ pronostic.user.profile }}</a></li>
     {% endfor %}
     </ul>
 {% else %}

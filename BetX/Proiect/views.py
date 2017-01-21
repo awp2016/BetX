@@ -36,12 +36,21 @@ class PronosticuriListView(ListView):
 	def get_queryset(self):
 		return Pronostic.objects.filter(match__pk= self.kwargs['pk']).order_by('-publication_date')
 
-def results(request, pronostic_id):
-	response = "You're looking at the results of question %s."
-	return HttpResponse(response % pronostic_id)
+	def get_context_data(self, **kwargs):
+		context = super(PronosticuriListView, self).get_context_data(**kwargs)
+		context['match'] = models.Match.objects.get(pk = self.kwargs['pk'])
+		return context
 
-def vote(request, pronostic_id):
-	return HttpResponse("Votezi pronosticul:%s" % pronostic_id)
+
+
+
+
+class PronosticDetailView(DetailView):
+	model = models.Pronostic
+	context_object_name = "pronostic"
+	template_name = 'Proiect/PronosticDetails.html'
+
+
 
 def signup(request):
 	if request.method == 'POST':

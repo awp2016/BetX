@@ -1,0 +1,10 @@
+{% if pronostic %}
+<h1> Detalii despre pronosticul {{pronostic.pronostic_text}} din meciul {{pronostic.match.subject}} </h1>
+    <ul>
+    {% for comment in pronostic.comments.all %}
+        <li>{{comment.comment_text}}" adaugat de {{comment.author.profile}}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No comments are available</p>
+{% endif %}
