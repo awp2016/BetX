@@ -40,7 +40,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/home/ciprian/Desktop/BetX-master/BetX/sandbox"
+VIRTUAL_ENV="/home/ciprian/Desktop/BetX/BetX/sandbox"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

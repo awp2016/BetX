@@ -1,7 +1,7 @@
 {% if latest_pronostic_list %}
     <ul>
     {% for pronostic in latest_pronostic_list %}
-        <li><a href="/Proiect/{{ pronostic.id }}/">{{ pronostic.pronostic_text }}</a></li>
+        <li><a href="/{{ pronostic.id }}/">{{ pronostic.pronostic_text }}</a></li>
     {% endfor %}
     </ul>
 {% else %}
