@@ -17,10 +17,10 @@ from .forms import SignUpForm
 from .models import Pronostic
 # Create your views here.
 
-def pronosticuri(request):
+def Home(request):
     latest_pronostic_list = Pronostic.objects.order_by('-publication_date')
     context = {'latest_pronostic_list': latest_pronostic_list}
-    return render(request, 'Proiect/pronostic.html', context)
+    return render(request, 'Proiect/Home.html', context)
 
 def detail(request, pronostic_id):
 	return HttpResponse("Te uiti la pronosticul:%s" % pronostic_id)
@@ -59,7 +59,7 @@ def login_view(request):
             if user:
                 login(request=request,
                       user=user)
-                return redirect('pronosticuri')
+                return redirect('Home')
             else:
                 context['error_message'] = 'Wrong username or password!'
     context['form'] = form
