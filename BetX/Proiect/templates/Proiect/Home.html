@@ -1,11 +1,17 @@
 {% extends 'Proiect/layout.html' %}
 
+<<<<<<< HEAD
+{% block content %}
+
+=======
+>>>>>>> 82414dd44bcf0874dbbaeec8d56cb765fdd3d703
 {% if matches %}
     <ul>
     {% for match in matches %}
-        <li><a href="/{{ match.id }}/">{{ match.subject }}</a></li>
+        <li><a href="{% url 'pronosticuri' match.pk %}">{{ match.subject }}</a></li>
     {% endfor %}
     </ul>
 {% else %}
     <p>No matches are available.</p>
 {% endif %}
+{% endblock %}

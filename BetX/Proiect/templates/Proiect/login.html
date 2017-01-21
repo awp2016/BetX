@@ -4,17 +4,26 @@
 <head>
   <meta charset="UTF-8">
    {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+   <link rel="stylesheet" type="text/css" href="{% static '/bootstrap-3.3.7/dist/css/bootstrap.css' %}">
+   <link rel="stylesheet" type="text/css" href="{% static '/betx.css' %}">
+
   <title>Login</title>
 </head>
 <body>
-<div class="login-page">
-  <form class="login-form" method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    {{ error_message }}
-    <button class="button" type="submit">Login</button>
-  </form>
-</div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
+                    <div class="card login-card">
+                        <form class="login-form" method="POST">
+                              {% csrf_token %}
+                              {{ form.as_p }}
+                              {{ error_message }}
+                              <button class="btn btn-primary btn-danger" type="submit">Login</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 </body>
 </html>
