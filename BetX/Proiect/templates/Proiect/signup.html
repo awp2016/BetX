@@ -1,14 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<meta charset="UTF-8">
+     {% load static %}
+     <link rel="stylesheet" type="text/css" href="{% static '/bootstrap-3.3.7/dist/css/bootstrap.css' %}">
+     <link rel="stylesheet" type="text/css" href="{% static '/betx.css' %}">
+	<title>Sign Up</title>
 </head>
 <body>
-	<h1>Join Now</h1>
-		<form method='POST' action=''> {% csrf_token %}
-			{{form.as_p}}
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
+				<div class="card">
+					<form method='POST' action=''> {% csrf_token %}
+						{{form.as_p}}
 
-			<input type="submit" name="">
-		</form>
+						<input class="btn btn-danger" type="submit" name="">
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>
