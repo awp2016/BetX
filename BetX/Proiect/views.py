@@ -55,7 +55,7 @@ def signup(request):
 															birthday = form.cleaned_data['birthday'],
 															sex = form.cleaned_data['sex'],
 															)
-			return redirect('Home/')
+			return redirect('Login/')
 	form = forms.RegistrationForm()
 	context = {
 		'form': form
