@@ -37,9 +37,14 @@ def signup(request):
         form = forms.RegistrationForm(request.POST)
         if form.is_valid():
             user = User.objects.create_user(username=form.cleaned_data['username'],
-                                            password=form.cleaned_data['password'],
-                                            email=form.cleaned_data['email'])
-            return redirect('/')
+                                            password=form.cleaned_data['password'])
+            user_profile = models.UserProfile.objects.create(first_name = form.cleaned_data['first_name'],
+                                                            last_name = form.cleaned_data['last_name'],
+                                                            email = form.cleaned_data['email'],
+                                                            birthday = form.cleaned_data['birthday'],
+                                                            sex = form.cleaned_data['sex'],
+                                                            )
+            return redirect('Home/')
     form = forms.RegistrationForm()
     context = {
         'form': form
