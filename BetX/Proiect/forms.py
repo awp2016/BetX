@@ -14,6 +14,12 @@ class LoginForm(forms.Form):
     password = forms.CharField(label="Password", widget=forms.PasswordInput)
 
 
+class RegistrationForm(forms.Form):
+    username = forms.CharField(label="Username")
+    password = forms.CharField(label="Password", widget=forms.PasswordInput)
+    email = forms.CharField(label="Email")
+
+
 class ProfileForm(forms.Form):
     first_name = forms.CharField()
     last_name = forms.CharField()

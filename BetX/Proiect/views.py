@@ -8,6 +8,7 @@ from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.views.generic.edit import DeleteView, UpdateView
 from django.views.generic.list import ListView
+from django.contrib.auth.models import User
 
 from . import models
 from . import forms
@@ -31,18 +32,20 @@ def results(request, pronostic_id):
 def vote(request, pronostic_id):
 	return HttpResponse("Votezi pronosticul:%s" % pronostic_id)
 
-def home(request):
+def signup(request):
+    if request.method == 'POST':
+        form = forms.RegistrationForm(request.POST)
+        if form.is_valid():
+            user = User.objects.create_user(username=form.cleaned_data['username'],
+                                            password=form.cleaned_data['password'],
+                                            email=form.cleaned_data['email'])
+            return redirect('/')
+    form = forms.RegistrationForm()
+    context = {
+        'form': form
+    }
+    return render(request, 'Proiect/signup.html', context)
 
-	form = SignUpForm(request.POST or None)
-
-	if form.is_valid():
-		save_it = form.save(commit=False)
-		save_it.save()
-
-	return render(request,
-				  'Proiect/signup.html',
-				  locals(),
-		 		  )
 
 def login_view(request):
     context = {}
