@@ -4,25 +4,45 @@
     <title>BetX</title>
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static '/bootstrap-3.3.7/dist/css/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/betxx.css' %}">
     <!-- <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> -->
   </head>
 
   <body>
-  <div class="page-container">
-    {% block head %}
-      <h1>Welcome to our page with <b>Best Tips</b></h1>
-    {% endblock %}
-    <div class="user">
-    <span>Logged in as:<span>
-    {% if user.profile %}
-      <a href="{% url 'user_profile' user.profile.pk %}">{{ user.username }}</a>
-    {% else %}
-      {{ user.username }}
-    {% endif %}
-    | <a href="{% url 'logout' %}">Logout</a>
-    </div>
-    {% block content %}
-    {% endblock %}
-  </div>
+      <div class="page-header">
+          <div class="container">
+              <div class="row">
+                  <div class="col-md-6">
+                      <div class="text-center">
+                          {% block head %}
+                            <h1>Welcome to our page with <b>Best Tips</b></h1>
+                          {% endblock %}
+                      </div>
+
+                  </div>
+                  <div class="col-md-6">
+                      <div class="user">
+                          <span>Logged in as: <span>
+                          {% if user.profile %}
+                            <a href="{% url 'user_profile' user.profile.pk %}">{{ user.username }}</a>
+                          {% else %}
+                            {{ user.username }}
+                          {% endif %}
+                          | <a href="{% url 'logout' %}">Logout</a>
+                      </div>
+
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="container">
+          <div class="row">
+              <div class="col-md-6 col-md-offset-1">
+                  {% block content %}
+                  {% endblock %}
+              </div>
+          </div>
+      </div>
+
   </body>
 </html>
