@@ -1,6 +1,8 @@
 {% extends 'Proiect/layout.html' %}
-<div class="content">
+
     {% block content %}
+    <div class="content">
+
     {% if matches %}
     <div class="table-responsive">
         <table class="table table-hover table-bordered">
@@ -24,7 +26,7 @@
     {% else %}
         <p>No matches are available.</p>
     {% endif %}
-    {% endblock %}
     </div>
-
 </div>
+
+    {% endblock %}

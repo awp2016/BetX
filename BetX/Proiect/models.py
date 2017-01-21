@@ -23,7 +23,7 @@ class Match(BaseModel):
 
 
 class Pronostic(BaseModel):
-	user = models.ForeignKey(User)
+	user = models.ForeignKey(User, related_name='pronostics')
 	match = models.ForeignKey(Match, on_delete = models.CASCADE)
 	pronostic_text = models.CharField(max_length = 200)
 	def __str__(self):
@@ -71,3 +71,6 @@ class UserProfile(models.Model):
     birthday = models.DateField(null=True)
     sex = models.CharField(max_length=1, choices=SEX_CHOICES, default=MALE)
     user = models.OneToOneField(User, primary_key=True, related_name='profile')
+
+    def __str__(self):
+    	return self.first_name + " " + self.last_name
