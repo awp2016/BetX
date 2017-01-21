@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect, render
 from django.urls import reverse
-from django.views.generic.edit import DeleteView, UpdateView
+from django.views.generic.edit import DeleteView, UpdateView, CreateView
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.contrib.auth.models import User
@@ -143,3 +143,14 @@ class UserProfileUpdate(LoginRequiredMixin, UpdateView):
 	template_name = 'Proiect/edit_profile.html'
 	def get_success_url(self):
 		return reverse('user_profile', kwargs = {'pk':self.get_object().pk})
+
+
+class AddProno(LoginRequiredMixin, CreateView):
+	model = models.Pronostic
+	fields = ['match','pronostic_text']
+	template_name = 'Proiect/addprono.html'
+	def form_valid(self, form):
+		form.instance.user = self.request.user
+		return super(AddProno, self).form_valid(form)
+	def get_success_url(self):
+		return reverse('Home')

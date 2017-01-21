@@ -1,10 +1,24 @@
-{% if pronosticuri %}
-<h1> Pronosticuri pentru {{match.subject}} </h1>
-    <ul>
-    {% for pronostic in pronosticuri %}
-        <li><a href="Home/{{ pronostic.id }}/">{{ pronostic.pronostic_text }}, Adaugat de : {{ pronostic.user.profile }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No pronostics are available</p>
-{% endif %}
+{% extends 'Proiect/layout.html' %}
+
+{% block head %}
+  <h1>Pronosticurile zilei</h1>
+{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-11 col-md-offset-1">
+            {% if pronosticuri %}
+            <h1> Pronosticuri pentru {{match.subject}} </h1>
+                <ul>
+                {% for pronostic in pronosticuri %}
+                    <li><a href="Home/{{ pronostic.id }}/">{{ pronostic.pronostic_text }}, Adaugat de : {{ pronostic.user.profile }}</a></li>
+                {% endfor %}
+                </ul>
+            {% else %}
+                <p>No pronostics are available</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
