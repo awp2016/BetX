@@ -19,12 +19,22 @@ from .models import Pronostic
 # Create your views here.
 
 def Home(request):
-    latest_pronostic_list = Pronostic.objects.order_by('-publication_date')
-    context = {'latest_pronostic_list': latest_pronostic_list}
-    return render(request, 'Proiect/Home.html', context)
 
-def detail(request, pronostic_id):
-	return HttpResponse("Te uiti la pronosticul:%s" % pronostic_id)
+	latest_matches_list = Pronostic.objects.order_by('-publication_date')
+	context = {'latest_matches_list': latest_matches_list} 
+	return render(request, 'Proiect/Home.html', context)
+
+
+class MatchListView(ListView):
+	model = models.Match
+	template_name = 'Proiect/Home.html'
+	context_object_name = 'matches'
+
+
+def pronostics(request, meci_id):
+	latest_pronostics_list = Pronostic.objects.order_by('-publication_date')
+	context = {'latest_pronostics_list': latest_pronostics_list}
+	return render(request, 'Proiect/pronosticuri.html', context)
 
 def results(request, pronostic_id):
 	response = "You're looking at the results of question %s."
@@ -34,48 +44,48 @@ def vote(request, pronostic_id):
 	return HttpResponse("Votezi pronosticul:%s" % pronostic_id)
 
 def signup(request):
-    if request.method == 'POST':
-        form = forms.RegistrationForm(request.POST)
-        if form.is_valid():
-            user = User.objects.create_user(username=form.cleaned_data['username'],
-                                            password=form.cleaned_data['password'])
-            user_profile = models.UserProfile.objects.create(first_name = form.cleaned_data['first_name'],
-                                                            last_name = form.cleaned_data['last_name'],
-                                                            email = form.cleaned_data['email'],
-                                                            birthday = form.cleaned_data['birthday'],
-                                                            sex = form.cleaned_data['sex'],
-                                                            )
-            return redirect('Home/')
-    form = forms.RegistrationForm()
-    context = {
-        'form': form
-    }
-    return render(request, 'Proiect/signup.html', context)
+	if request.method == 'POST':
+		form = forms.RegistrationForm(request.POST)
+		if form.is_valid():
+			user = User.objects.create_user(username=form.cleaned_data['username'],
+											password=form.cleaned_data['password'])
+			user_profile = models.UserProfile.objects.create(first_name = form.cleaned_data['first_name'],
+															last_name = form.cleaned_data['last_name'],
+															email = form.cleaned_data['email'],
+															birthday = form.cleaned_data['birthday'],
+															sex = form.cleaned_data['sex'],
+															)
+			return redirect('Home/')
+	form = forms.RegistrationForm()
+	context = {
+		'form': form
+	}
+	return render(request, 'Proiect/signup.html', context)
 
 
 def login_view(request):
-    context = {}
-    if request.method == 'GET':
-        form = forms.LoginForm()
-    elif request.method == 'POST':
-        form = forms.LoginForm(request.POST)
-        if form.is_valid():
-            user = authenticate(username=form.cleaned_data['username'],
-                                password=form.cleaned_data['password'])
-            if user:
-                login(request=request,
-                      user=user)
-                return redirect('Home')
-            else:
-                context['error_message'] = 'Wrong username or password!'
-    context['form'] = form
-    return render(request, 'Proiect/login.html', context)
+	context = {}
+	if request.method == 'GET':
+		form = forms.LoginForm()
+	elif request.method == 'POST':
+		form = forms.LoginForm(request.POST)
+		if form.is_valid():
+			user = authenticate(username=form.cleaned_data['username'],
+								password=form.cleaned_data['password'])
+			if user:
+				login(request=request,
+					  user=user)
+				return redirect('Home')
+			else:
+				context['error_message'] = 'Wrong username or password!'
+	context['form'] = form
+	return render(request, 'Proiect/login.html', context)
 
 
 def logout_view(request):
-    if request.method == 'GET':
-        logout(request)
-        return redirect('login')
+	if request.method == 'GET':
+		logout(request)
+		return redirect('login')
 
 
 # def user_profile(request, pk):
@@ -88,9 +98,9 @@ def logout_view(request):
 
 class UserProfileView(DetailView):
 
-    model = models.UserProfile
-    context_object_name = 'user_profile'
-    template_name = 'Proiect/user_profile.html'
+	model = models.UserProfile
+	context_object_name = 'user_profile'
+	template_name = 'Proiect/user_profile.html'
 
 
 # def edit_user_profile(request, pk):
@@ -117,8 +127,8 @@ class UserProfileView(DetailView):
 
 
 class UserProfileUpdate(LoginRequiredMixin, UpdateView):
-    model = models.UserProfile
-    fields = ['first_name','last_name','birthday','sex']
-    template_name = 'Proiect/edit_profile.html'
-    def get_success_url(self):
-        return reverse('user_profile', kwargs = {'pk':self.get_object().pk})
+	model = models.UserProfile
+	fields = ['first_name','last_name','birthday','sex']
+	template_name = 'Proiect/edit_profile.html'
+	def get_success_url(self):
+		return reverse('user_profile', kwargs = {'pk':self.get_object().pk})
