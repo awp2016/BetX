@@ -1,10 +1,22 @@
-{% if pronostic %}
-<h1> Detalii despre pronosticul {{pronostic.pronostic_text}} din meciul {{pronostic.match.subject}} </h1>
-    <ul>
-    {% for comment in pronostic.comments.all %}
-        <li>{{comment.comment_text}}" adaugat de {{comment.author.profile}}</li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No comments are available</p>
-{% endif %}
+{% extends 'Proiect/layout.html' %}
+
+{% block head %}
+  <h1>Detalii Pronostic</h1>
+{% endblock %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-1">
+            {% if pronostic %}
+            <h1> Detalii despre pronosticul {{pronostic.pronostic_text}} din meciul {{pronostic.match.subject}} </h1>
+                <ul>
+                {% for comment in pronostic.comments.all %}
+                    <li>{{comment.comment_text}}" adaugat de {{comment.author.profile}}</li>
+                {% endfor %}
+                </ul>
+            {% else %}
+                <p>No comments are available</p>
+            {% endif %}
+        </div>
+    </div>
+</div>

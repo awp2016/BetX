@@ -8,12 +8,12 @@
     <div class="row">
         <div class="col-md-11 col-md-offset-1">
             {% if pronosticuri %}
-            <h1> Pronosticuri pentru {{match.subject}} </h1>
-                <ul>
+            <h2> Pronosticuri pentru {{match.subject}}: </h2><br><br>
+                <ol class="aranjeazap">
                 {% for pronostic in pronosticuri %}
-                    <li><a href="Home/{{ pronostic.id }}/">{{ pronostic.pronostic_text }}, Adaugat de : {{ pronostic.user.profile }}</a></li>
+                    <li><a href="Home/{{ pronostic.id }}/">{{ pronostic.pronostic_text }}</a><br><p>adaugat de : {{ pronostic.user.profile }}</p></li>
                 {% endfor %}
-                </ul>
+                </ol>
             {% else %}
                 <p>No pronostics are available</p>
             {% endif %}
