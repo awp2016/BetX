@@ -13,5 +13,6 @@ urlpatterns = [
     url(r'^user_profile/(?P<pk>\d+)/$', views.UserProfileView.as_view(),
         name="user_profile"),
     url(r'^user-profile/(?P<pk>\d+)/edit/$', views.UserProfileUpdate.as_view(),
-        name="edit_profile")
+        name="edit_profile"),
+     url(r'^Match/Details/(?P<pk>[0-9]+)/comment/add/$', views.AddComment.as_view(), name='addcomment'),
 ]

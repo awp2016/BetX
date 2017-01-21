@@ -44,6 +44,8 @@ class Commnent(BaseModel):
 	pronostic = models.ForeignKey(Pronostic, on_delete = models.CASCADE, related_name = 'comments')
 	author = models.ForeignKey(User)
 	comment_text = models.CharField(max_length = 200)
+	def __str__(self):
+		return self.comment_text
 
 
 

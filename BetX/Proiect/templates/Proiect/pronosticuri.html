@@ -11,7 +11,7 @@
             <h2> Pronosticuri pentru {{match.subject}}: </h2><br><br>
                 <ol class="aranjeazap">
                 {% for pronostic in pronosticuri %}
-                    <li><a href="Home/{{ pronostic.id }}/">{{ pronostic.pronostic_text }}</a><br><p>adaugat de : {{ pronostic.user.profile }}</p></li>
+                    <li><a href="{% url 'details' pronostic.pk %}">{{ pronostic.pronostic_text }}</a><br><p>adaugat de : {{ pronostic.user.profile }}</p></li>
                 {% endfor %}
                 </ol>
             {% else %}
