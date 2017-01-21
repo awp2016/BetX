@@ -33,11 +33,7 @@ class Pronostic(BaseModel):
 
 
 class Vote(models.Model):
-<<<<<<< HEAD
-	pronostic = models.ForeignKey(Pronostic, on_delete = models.CASCADE, related_name='votes')
-=======
 	pronostic = models.ForeignKey(Pronostic, on_delete = models.CASCADE, related_name = 'votes')
->>>>>>> 8cc189c0576f8934ed503e4a66d81394ce41857d
 	user = models.ForeignKey(User)
 	vote_value = models.CharField(max_length = 200)
 	def __str__(self):
@@ -45,11 +41,7 @@ class Vote(models.Model):
 
 
 class Commnent(BaseModel):
-<<<<<<< HEAD
-	pronostic = models.ForeignKey(Pronostic, on_delete = models.CASCADE, related_name='comments')
-=======
 	pronostic = models.ForeignKey(Pronostic, on_delete = models.CASCADE, related_name = 'comments')
->>>>>>> 8cc189c0576f8934ed503e4a66d81394ce41857d
 	author = models.ForeignKey(User)
 	comment_text = models.CharField(max_length = 200)
 	

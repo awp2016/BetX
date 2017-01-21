@@ -16,8 +16,4 @@ class SignUpAdmin(admin.ModelAdmin):
 admin.site.register(Pronostic)
 admin.site.register(Match)
 admin.site.register(models.UserProfile)
-<<<<<<< HEAD
 admin.site.register(models.Commnent)
-=======
-admin.site.register(Commnent)
->>>>>>> 8cc189c0576f8934ed503e4a66d81394ce41857d

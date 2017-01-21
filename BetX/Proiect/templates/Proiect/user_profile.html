@@ -26,17 +26,29 @@
        		 <li>
        		 Comentariu: 
         		{{comment.comment_text}}
-        		<ul>
-        		<li>
-        	   		adaugat de : 
-       		 		{{comment.author}}
-       		 		</li>
-       		 		</ul>
       		  </li>
     		{% endfor %}
     	</ul>
      	</li>
-
     {% endfor %}
     </ul>
+
+     <h2>Istoric comentarii</h2>
+  <ul>
+    {% for pronostic in pronostics %}
+
+     
+        	{% for comment in pronostic.comments.all %}
+    		{% if comment.author == request.user %}
+       		<li>
+       		Comentariu: 
+        		{{comment.comment_text}}
+        		
+      		</li>
+      		{% endif %}
+    		{% endfor %}
+     
+    {% endfor %}
+    </ul>
+    	
 {% endblock %}
