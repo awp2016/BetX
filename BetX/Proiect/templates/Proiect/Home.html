@@ -1,13 +1,30 @@
 {% extends 'Proiect/layout.html' %}
+<div class="content">
+    {% block content %}
+    {% if matches %}
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered">
+            <thead>
+                <tr>
+                    <th>
+                        <h2>Matches Today</h2>
+                    </th>
+                </tr>
+            </thead>
+        {% for match in matches %}
+        <tbody>
+            <tr>
+                <td>
+                    <a href="{% url 'pronosticuri' match.pk %}">{{ match.subject }}</a>
+                </td>
+            </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+    {% else %}
+        <p>No matches are available.</p>
+    {% endif %}
+    {% endblock %}
+    </div>
 
-{% block content %}
-{% if matches %}
-    <ul>
-    {% for match in matches %}
-        <li><a href="{% url 'pronosticuri' match.pk %}">{{ match.subject }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No matches are available.</p>
-{% endif %}
-{% endblock %}
+</div>

@@ -13,9 +13,12 @@
           <div class="container">
               <div class="row">
                   <div class="col-md-6">
-                      {% block head %}
-                        <h1>Welcome to our page with <b>Best Tips</b></h1>
-                      {% endblock %}
+                      <div class="text-center">
+                          {% block head %}
+                            <h1>Welcome to our page with <b>Best Tips</b></h1>
+                          {% endblock %}
+                      </div>
+
                   </div>
                   <div class="col-md-6">
                       <div class="user">
@@ -27,11 +30,19 @@
                           {% endif %}
                           | <a href="{% url 'logout' %}">Logout</a>
                       </div>
-                      {% block content %}
-                      {% endblock %}
+
                   </div>
               </div>
           </div>
       </div>
+      <div class="container">
+          <div class="row">
+              <div class="col-md-6 col-md-offset-1">
+                  {% block content %}
+                  {% endblock %}
+              </div>
+          </div>
+      </div>
+
   </body>
 </html>
