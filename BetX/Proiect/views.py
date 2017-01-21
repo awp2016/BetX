@@ -43,12 +43,14 @@ class PronosticuriListView(ListView):
 
 
 
-def results(request, pronostic_id):
-	response = "You're looking at the results of question %s."
-	return HttpResponse(response % pronostic_id)
 
-def vote(request, pronostic_id):
-	return HttpResponse("Votezi pronosticul:%s" % pronostic_id)
+
+class PronosticDetailView(DetailView):
+	model = models.Pronostic
+	context_object_name = "pronostic"
+	template_name = 'Proiect/PronosticDetails.html'
+
+
 
 def signup(request):
 	if request.method == 'POST':

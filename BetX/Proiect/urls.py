@@ -5,8 +5,7 @@ from . import views
 urlpatterns = [
     url(r'^Home/$', views.MatchListView.as_view(), name='Home'),
     url(r'^Match/(?P<pk>[0-9]+)/$', views.PronosticuriListView.as_view(), name='pronosticuri'),
-    url(r'^(?P<pronostic_id>[0-9]+)/results/$', views.results, name='results'),
-    url(r'^(?P<pronostic_id>[0-9]+)/vote/$', views.vote, name='vote'),
+    url(r'^Match/Details/(?P<pk>[0-9]+)/$', views.PronosticDetailView.as_view(), name='details'),
     url(r'^signup', views.signup, name="signup"),
     url(r'^Login', views.login_view, name="login"),
     url(r'^logout/$', views.logout_view, name="logout"),

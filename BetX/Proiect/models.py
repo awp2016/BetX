@@ -33,7 +33,7 @@ class Pronostic(BaseModel):
 
 
 class Vote(models.Model):
-	pronostic = models.ForeignKey(Pronostic, on_delete = models.CASCADE)
+	pronostic = models.ForeignKey(Pronostic, on_delete = models.CASCADE, related_name = 'votes')
 	user = models.ForeignKey(User)
 	vote_value = models.CharField(max_length = 200)
 	def __str__(self):
@@ -41,7 +41,7 @@ class Vote(models.Model):
 
 
 class Commnent(BaseModel):
-	pronostic = models.ForeignKey(Pronostic, on_delete = models.CASCADE)
+	pronostic = models.ForeignKey(Pronostic, on_delete = models.CASCADE, related_name = 'comments')
 	author = models.ForeignKey(User)
 	comment_text = models.CharField(max_length = 200)
 	
