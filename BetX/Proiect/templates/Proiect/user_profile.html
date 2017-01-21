@@ -5,13 +5,29 @@
 {% endblock %}
 
 {% block content %}
-  <div class="user-details">
-    <span> First name: <b>{{ user_profile.first_name }}</b> </span>
-    <span> Last name: <b>{{ user_profile.last_name }}</b> </span>
-    <span> Birthday: <b>{{ user_profile.birthday }}</b> <br> </span>
-    <span> Sex: <b>{{ user_profile.sex }}</b> </span>
-  </div>
-  <a class="button" href="{% url 'edit_profile' user_profile.pk %}">Edit</a>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-content">
+                    <h4 class="card-title">Edit Profile</h4>
+                </div>
+                <form>
+                    <div class="form-group">
+                        <span> First name: <label><b>{{ user_profile.first_name }}</b> </label></span>
+                        <span> Last name: <label><b>{{ user_profile.last_name }}</b> </label></span>
+                        <span> Birthday: <label><b>{{ user_profile.birthday }}</b></label></span>
+                        <span> Sex:  <label><b>{{ user_profile.sex }}</b></label></span>
+                        <a class="btn btn-primary" href="{% url 'edit_profile' user_profile.pk %}">Edit</a>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
   <h2>Istoric pronosticuri</h2>
   <ul>
     {% for pronostic in pronostics %}

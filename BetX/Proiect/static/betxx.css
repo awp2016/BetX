@@ -6,13 +6,61 @@ body{
     float: right;
     padding-top: 30px;
 }
-a{
+.table a{
     font-size: 25px;
 }
-a:link {
+.table a:link {
     text-decoration: none;
 }
 
-a:visited {
+.table a:visited {
     text-decoration: none;
+}
+.user-details {
+    clear: both;
+}
+span{
+    display: block;
+}
+.card{
+    display: inline-block;
+    position: relative;
+    padding: 20px 20px;
+    width: 100%;
+    margin: 25px 25px;
+    box-shadow: 0 7px 20px 0 rgba(0, 0, 0, 0.14);
+    border-radius: 6px;
+    color: rgba(0,0,0, 0.87);
+    background: #fff;
+}
+.card .card-content {
+    padding: 15px 20px;
+    position: relative;
+}
+.card .card-title {
+    margin-top: 0;
+    margin-bottom: 3px;
+    padding-bottom: 15px;
+    color: #3C4858;
+    text-decoration: none;
+}
+.card p input{
+    display: inline-block;
+    width: 100%;
+    vertical-align: middle;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    float: right;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
 }
