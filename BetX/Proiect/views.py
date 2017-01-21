@@ -18,10 +18,10 @@ from .forms import SignUpForm
 from .models import Pronostic
 # Create your views here.
 
-def pronosticuri(request):
+def Home(request):
     latest_pronostic_list = Pronostic.objects.order_by('-publication_date')
     context = {'latest_pronostic_list': latest_pronostic_list}
-    return render(request, 'Proiect/pronostic.html', context)
+    return render(request, 'Proiect/Home.html', context)
 
 def detail(request, pronostic_id):
 	return HttpResponse("Te uiti la pronosticul:%s" % pronostic_id)
@@ -38,9 +38,14 @@ def signup(request):
         form = forms.RegistrationForm(request.POST)
         if form.is_valid():
             user = User.objects.create_user(username=form.cleaned_data['username'],
-                                            password=form.cleaned_data['password'],
-                                            email=form.cleaned_data['email'])
-            return redirect('/')
+                                            password=form.cleaned_data['password'])
+            user_profile = models.UserProfile.objects.create(first_name = form.cleaned_data['first_name'],
+                                                            last_name = form.cleaned_data['last_name'],
+                                                            email = form.cleaned_data['email'],
+                                                            birthday = form.cleaned_data['birthday'],
+                                                            sex = form.cleaned_data['sex'],
+                                                            )
+            return redirect('Home/')
     form = forms.RegistrationForm()
     context = {
         'form': form
@@ -60,7 +65,7 @@ def login_view(request):
             if user:
                 login(request=request,
                       user=user)
-                return redirect('pronosticuri')
+                return redirect('Home')
             else:
                 context['error_message'] = 'Wrong username or password!'
     context['form'] = form

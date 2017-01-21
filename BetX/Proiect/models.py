@@ -8,8 +8,16 @@ from django.urls import reverse
 from django.utils.encoding import smart_unicode
 
 # Create your models here.
+class Match(models.Model):
+	user = models.ForeignKey(User)
+	subject = models.CharField(max_length=200)
+	def __str__(self):
+		return self.subject
+
 
 class Pronostic(models.Model):
+	user = models.ForeignKey(User)
+	match = models.ForeignKey(Match, on_delete = models.CASCADE)
 	pronostic_text = models.CharField(max_length = 200)
 	publication_date = models.DateTimeField('date published')
 	def __str__(self):
@@ -31,12 +39,6 @@ class Commnent(models.Model):
 	author = models.ForeignKey(User)
 	comment_text = models.CharField(max_length = 200)
 	publication_date = models.DateTimeField('date published')
-
-
-class Match(models.Model):
-	pronostic = models.ForeignKey(Pronostic, on_delete = models.CASCADE)
-	user = models.ForeignKey(User)
-	subject = models.CharField(max_length=200)
 	
 
 class SignUp(models.Model):
@@ -59,6 +61,7 @@ class UserProfile(models.Model):
     )
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
+    email = models.EmailField()
     birthday = models.DateField(null=True)
     sex = models.CharField(max_length=1, choices=SEX_CHOICES, default=MALE)
     user = models.OneToOneField(User, primary_key=True, related_name='profile')
