@@ -23,7 +23,7 @@ class Match(BaseModel):
 
 
 class Pronostic(BaseModel):
-	user = models.ForeignKey(User)
+	user = models.ForeignKey(User, related_name='pronostics')
 	match = models.ForeignKey(Match, on_delete = models.CASCADE)
 	pronostic_text = models.CharField(max_length = 200)
 	def __str__(self):
